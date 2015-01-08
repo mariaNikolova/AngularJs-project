@@ -1,12 +1,12 @@
 app.factory("userData",["$resource","baseServiceUrl","authentication",function($resource,baseServiceUrl,authentication){
 	function registerUser(user){
 		//authentication.saveUser(token ) ;
-		var resource = $resource(baseServiceUrl + "user/register")
+		return $resource(baseServiceUrl + "user/register")
 			.save(user)
 			.$promise
 			.then(function(data){
 				authentication.saveUser(data);
-				authentication.getHeaders() ; 
+				//authentication.getHeaders() ; 
 			})
 	}
 	function loginUser(user){

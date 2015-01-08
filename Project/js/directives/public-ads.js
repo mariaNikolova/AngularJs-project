@@ -1,4 +1,4 @@
-app.directive("PublicAds",function(){
+app.directive("publicAds",function(){
 	return {
 		controller:"PublicAdsCtrl",
 		restrict:'E',
