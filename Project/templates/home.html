@@ -3,7 +3,8 @@
 </header>
 <div id="wrapper "> 
 	<div class="col-md-3">
-		<left-public-sideBar></left-public-sideBar>
+		<div ng-include="'templates/public/left-sidebar.html'" ng-if="!isLoggedIn"></div>
+		<div ng-include="'templates/directives/logged-in-sidebar.html'" ng-if="isLoggedIn"></div>
 	</div>
 	<div class="col-md-6">
 		<public-ads></public-ads>

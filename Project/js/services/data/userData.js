@@ -10,12 +10,14 @@ app.factory("userData",["$resource","baseServiceUrl","authentication",function($
 			})
 	}
 	function loginUser(user){
-		return $resource(baseServiceUrl + 'user/login')
-				.save(user)
-				.$promise
+		var resource = $resource(baseServiceUrl + 'user/login')
+				.save(user);
+
+				resource.$promise
 				.then(function(data){
 					authentication.saveUser(data);
 				});
+				return resource;
 	}
 	function logoutUser(){
 		return $resource(baseServiceUrl + 'user/logout')
@@ -30,4 +32,4 @@ app.factory("userData",["$resource","baseServiceUrl","authentication",function($
 		login: loginUser,
 		logout: logoutUser
 	}
-}])  
+}])   

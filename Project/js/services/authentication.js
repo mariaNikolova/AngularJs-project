@@ -5,7 +5,7 @@ app.factory('authentication', function(){
 		//localStorageServiceProvider.set(key,data);
 	}
 	function getUserData(){
-		return angular.fromJson(localStorage.getIem(key));
+		return angular.fromJson(localStorage.getItem(key));
 		//localStorageServiceProvider.get(key);
 	}
 	function getHeaders(argument){
@@ -23,11 +23,15 @@ app.factory('authentication', function(){
 		var isAdmin = getUserData().isAdmin;
 		return isAdmin;
 	}
+	function isLoggedIn(argument){
+		return !!getUserData();
+	}
 	return {
 		saveUser: saveUserData,
 		getUser:getUserData, 
 		getHeaders: getHeaders,
 		removeUser: removeUser,
-		isAdmin: isAdmin
+		isAdmin: isAdmin,
+		isLoggedIn: isLoggedIn,
 	}
 }); 

@@ -4,4 +4,4 @@ app.controller("TownsCtrl",["$scope","townsData",function($scope,townsData){
 		.then(function(data){
 			$scope.towns = data;
 		}); 
-}])
+}]) 
