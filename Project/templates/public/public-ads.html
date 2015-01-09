@@ -1,10 +1,63 @@
 <div id="public-ads">
 	<img src="images/loading.gif" ng-hide="ready" alt="" width="150px">
-	<ul ng-cloak>
-		<li ng-repeat="ad in adsData.ads">
-			{{ad.title}}
+	<ul ng-cloak style="list-style-type: none">
+		
+		<li ng-repeat="ad in adsData.ads" class="box">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="pull-left">
+						<h3>{{ad.title}}</h3>
+					</div>
+				</div>
+				<div class="col-md-4">
+				<span class="pull-right">
+					<h3>{{ad.date | date: 'd-MMM-yyyy'}}</h3>
+				</span>
+				</div>
+			</div>
+        <div class="row">
+						<div class= "col-md-4">
+							<img src="" ng-src="{{ad.imageDataUrl}}" class="_fullHD" width="100px">	</div>
+						<div class="col-md-8">
+							<div>
+								{{ad.text}}
+							</div>
+						
+							<div class="row">
+								<div class="col-md-2">
+									Name:
+								</div>
+								<div class="col-md-10">
+										 {{ad.ownerName}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+										Email: 
+								</div>
+								<div class="col-md-10">		
+										{{ad.ownerEmail}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									Phone: 
+								</div>
+								<div class="col-md-10">
+									{{ad.ownerPhone}}
+								</div>
+							</div>
+								
+					</div>
+				</div>
+			
 		</li>
+	</br>
 	</ul>
+	<div ng-if="adsData.ads.length==0" class="box no-data">
+    <h3>No ads found.</h3>
+	</div>
+
 	<pagination
 		page="startPage"
 		ng-model="currentPage"
