@@ -1,5 +1,9 @@
 <header>
 	<h1>Ads - {{pageTitle}}</h1>
+	<div ng-if="isLoggedIn" class="user-area">
+	  <span>{{userData.username}}</span>
+	  <a ng-click="logout()" class="link">Logout</a>
+	</div>
 </header>
 <div id="wrapper "> 
 	<div class="col-md-3">

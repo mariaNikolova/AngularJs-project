@@ -27,9 +27,13 @@ app.config(['$routeProvider',function($routeProvider) {
 		templateUrl:"templates/user/ads/publish-new-ad.html",
 		controller:"AdAdsCtrl"
 	});
-	$routeProvider.otherwise({
-		redirectTo:'/'
+	$routeProvider.when('/user/home',{
+		templateUrl:"templates/home.html",
+		controller:"HomeCtrl"
 	});
+	// $routeProvider.otherwise({
+	// 	redirectTo:'/'
+	// });
 
 	//localStorageServiceProvider.setStorageType("LocalStorage");
 	//localStorageServiceProvider.setPrefix("adsApp");

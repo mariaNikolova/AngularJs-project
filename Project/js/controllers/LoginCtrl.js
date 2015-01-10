@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('LoginCtrl',
-	function($scope,$location,$cookieStore,userData){
+	function($scope, $location, $cookieStore, userData){
 	$scope.login = function(){
 		userData.login($scope.user)
 			.$promise
@@ -27,8 +27,6 @@ app.controller('LoginCtrl',
 				console.debug(data);
 			}, function (err) {
                 alert(err.data.error_description || 'Your login FAIL!');
-			})
-
-        
+			})        
 	 }
 })
