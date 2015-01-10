@@ -27,7 +27,6 @@ app.factory('authentication', function(){
 		return isAdmin;
 	}
 	function isLoggedIn(argument){
-		console.log(!!getUserData());
 		return !!getUserData();
 	}
 

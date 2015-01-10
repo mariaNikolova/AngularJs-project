@@ -2,7 +2,6 @@
 
 app.controller("PublicAdsCtrl", function($scope,adsData,filter){
 	$scope.ready = false;
-
 	$scope.currentPage = 1; 
 	$scope.startPage = 1;
 	$scope.pageSize = 3;

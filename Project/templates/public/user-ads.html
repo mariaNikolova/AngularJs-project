@@ -1,0 +1,80 @@
+<div id="user-ads">
+	<img src="images/loading.gif" ng-hide="ready" alt="" width="150px">
+	<ul ng-cloak style="list-style-type: none">
+		
+		<li ng-repeat="ad in adsData.ads" class="box">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="pull-left">
+								<h3>{{ad.title}}</h3>
+							</div>
+						</div>
+						<div class="col-md-4">
+						<span class="pull-right">
+							<h3>{{ad.date | date: 'd-MMM-yyyy'}}</h3>
+						</span>
+						</div>
+					</div>
+			        <div class="row">
+						<div class= "col-md-4">
+							<img src="" ng-src="{{ad.imageDataUrl}}" class="_fullHD" width="100px">	</div>
+						<div class="col-md-8">
+							<div>
+								{{ad.text}}
+							</div>
+						
+							<div class="row">
+								<div class="col-md-2">
+									Category:
+								</div>
+								<div class="col-md-10">
+										 {{ad.categoryName}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+										Town: 
+								</div>
+								<div class="col-md-10">		
+										{{ad.townName}}
+								</div>
+							</div>								
+						</div>
+					</div>			
+				</div>
+				<div class="col-md-4">				
+					<div class="row">
+						<div class="col-md-2">
+								Status: 
+						</div>
+						<div class="col-md-10">		
+								{{ad.status}}
+						</div>
+					</div>								
+					<div class="row">
+						<div class="col-md-12">		
+						  	<a data-ng-show="ad.status === 'WaitingApproval' || ad.status === 'Published'" ng-click="deactivate(ad)" class="btn btn-default">Deactivate</a>
+						  	<a data-ng-hide="ad.status === 'WaitingApproval' || ad.status === 'Published'" ng-click="publishAgain(ad)" class="btn btn-default">Publish again</a>
+	                        <a href="#/user/ads/edit/{{ad.id}}" class="btn btn-default" data-ng-hide="ad.status === 'WaitingApproval' || ad.status === 'Published'">Edit</a>
+	                        <a href="#/user/ads/delete/{{ad.id}}" class="btn btn-default" data-ng-hide="ad.status === 'WaitingApproval' || ad.status === 'Published'">Delete</a>
+					</div>								
+				</div>			
+			</div>			
+		</li>
+	</br>
+	</ul>
+	<div ng-if="adsData.ads.length==0" class="box no-data">
+    <h3>No ads found.</h3>
+	</div>
+
+	<pagination
+		page="startPage"
+		ng-model="currentPage"
+		total-items="adsData.numItems"
+		ng-change="pageChanged()"
+		items-per-page="pageSize"
+		data-boundary-links="true">
+	</paginaion>
+</div>

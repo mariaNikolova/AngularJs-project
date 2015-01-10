@@ -9,11 +9,13 @@
 	<div class="col-md-3">
 		<div ng-include="'templates/public/left-sidebar.html'" ng-if="!isLoggedIn"></div>
 		<div ng-include="'templates/directives/logged-in-sidebar.html'" ng-if="isLoggedIn"></div>
+		<div ng-include="'templates/directives/my-ads-sidebar.html'" ng-if="myAds"></div>
 	</div>
 	<div class="col-md-6">
-		<public-ads></public-ads>
+		<public-ads ng-if="!myAds"></public-ads>
+		<user-ads ng-if="myAds"></user-ads>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-3" ng-if="!myAds">
 		<categories></categories>
 		<towns></towns>
 	</div>

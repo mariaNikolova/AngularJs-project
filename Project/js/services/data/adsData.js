@@ -1,7 +1,8 @@
 'use strict';
 
 app.factory('adsData', function($resource, baseServiceUrl, $cookieStore, $http,authentication){
-    //$http.defaults.headers.common.Authorization = 'Bearer ' + $cookieStore.get('token');
+    $http.defaults.headers.common.Authorization = 'Bearer ' + $cookieStore.get('token');
+
 	var resource = $resource(baseServiceUrl + 'ads:adId', {adId: '@id'}, {
 		update: { method: 'PUT'}
 	})
@@ -11,20 +12,40 @@ app.factory('adsData', function($resource, baseServiceUrl, $cookieStore, $http,a
         text: '@text',
         categoryid: '@categoryid',
         townid: '@townid',
-        ImageDataURL: '@ImageDataURL'
+        ImageDataURL: '@ImageDataURL',
     }, {
         update: {
             method: 'PUT'
         }
     });
+
 	function setHeaders() {
-		$http.defaults.headers.common.Authorization = 'Bearer ' + $cookieStore.get('token');
+		// $http.defaults.headers.common.Authorization = 'Bearer ' + $cookieStore.get('token');
 		//var headers = {};
 		//headers.Authorization = "Bearer " + authentication.getUserData().access_token;
         //$http.defaults.headers.common['Authorization'] = 'Bearer ' + authentication.getUserData()();
     }
 	function getPublicAds(params){
 		return resource.get(params);
+	}
+
+	function getUserAds(params){
+		return userAds.get(params);
+	}
+
+	function changeStatusUserAds(params, status){
+		var userChangeStatusAds = $resource(baseServiceUrl + 'user/ads/' + status + '/:id', {
+	        id: "@id",
+	    }, {
+	        update: {
+	            method: 'PUT'
+	        }
+	    });
+		return userChangeStatusAds.update(params);
+	}
+
+	function publishAgainUserAds(params){
+		return userDeactivateAds.update(params);
 	}
 
 	function editAd(adId, ad){
@@ -36,7 +57,7 @@ app.factory('adsData', function($resource, baseServiceUrl, $cookieStore, $http,a
 	}
 
 	function addAd(ad){
-		setHeaders();
+		// setHeaders();
         return userAds.save(ad);
 		// return $resource(baseServiceUrl + 'user/ads:adId', {adId: '@id'}, {
 		// 	update: { method: 'PUT'}
@@ -56,6 +77,8 @@ app.factory('adsData', function($resource, baseServiceUrl, $cookieStore, $http,a
 		editAd: editAd,
 		getAdById: getAdById,
 		addAd: addAd,
-		delete: deleteAd
+		delete: deleteAd,
+		getUserAds: getUserAds,
+		changeStatusUserAds: changeStatusUserAds
 	}
 })

@@ -31,6 +31,10 @@ app.config(['$routeProvider',function($routeProvider) {
 		templateUrl:"templates/home.html",
 		controller:"HomeCtrl"
 	});
+	$routeProvider.when('/user/ads',{
+		templateUrl:"templates/home.html",
+		controller:"UserAdsCtrl"
+	});
 	// $routeProvider.otherwise({
 	// 	redirectTo:'/'
 	// });

@@ -3,6 +3,7 @@
 app.controller('HomeCtrl',function($scope, $location, adsData, authentication){
 	$scope.pageTitle = "Home";
 	$scope.isLoggedIn = authentication.isLoggedIn();
+	$scope.myAds = false;
 	$scope.userData = authentication.getUser();
 	$scope.logout = function () {
 		$location.path("/");
