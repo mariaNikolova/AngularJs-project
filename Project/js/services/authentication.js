@@ -8,6 +8,7 @@ app.factory('authentication', function(){
 		return angular.fromJson(localStorage.getItem(key));
 		//localStorageServiceProvider.get(key);
 	}
+
 	function getHeaders(argument){
 		var headers = {};
 		var userData = getUserData() ; 
@@ -16,6 +17,9 @@ app.factory('authentication', function(){
 		};
 		return headers;
 	}
+	function getToken() {
+        return localStorage.getItem('token');
+    }
 	function removeUser(){
 		localStorage.removeItem(key);
 	}
@@ -26,6 +30,11 @@ app.factory('authentication', function(){
 	function isLoggedIn(argument){
 		return !!getUserData();
 	}
+	function saveUserAdData(data){
+		localStorage.setItem(key+"Ad",angular.toJson(data));
+		//localStorageServiceProvider.set(key,data);
+	}
+
 	return {
 		saveUser: saveUserData,
 		getUser:getUserData, 
@@ -33,5 +42,6 @@ app.factory('authentication', function(){
 		removeUser: removeUser,
 		isAdmin: isAdmin,
 		isLoggedIn: isLoggedIn,
+		saveUserAd: saveUserAdData,
 	}
 }); 
